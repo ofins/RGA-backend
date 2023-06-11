@@ -2,12 +2,13 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+require('dotenv').config();
 const app = express()
 app.use(express.json())
 app.use(cors())
 
 // mongoose.connect('mongodb://127.0.0.1:27017/myDB')
-mongoose.connect('mongodb+srv://ofins:Password@nodeexpressproject.o28jccr.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI).catch(error => console.error(error))
 
 const Team = require('./teams')
 const Game = require('./games')
